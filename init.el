@@ -10,23 +10,23 @@
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 (add-to-list 'load-path (concat user-emacs-directory "config"))
 
 (require 'cl)
 (require 'init-packages)
 (require 'init-util)
 
-(let ((base (concat user-emacs-directory "elisp")))
-  (add-to-list 'load-path base)
-  (dolist (dir (directory-files base t))
-    (when (and (file-directory-p dir)
-               (not (equal (file-name-nondirectory dir) ".."))
-               (not (equal (file-name-nondirectory dir) ".")))
-      (add-to-list 'load-path dir))))
-
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(when (file-exists-p custom-file)
-  (load custom-file))
+; (let ((base (concat user-emacs-directory "elisp")))
+;   (add-to-list 'load-path base)
+;   (dolist (dir (directory-files base t))
+;     (when (and (file-directory-p dir)
+;                (not (equal (file-name-nondirectory dir) ".."))
+;                (not (equal (file-name-nondirectory dir) ".")))
+;       (add-to-list 'load-path dir))))
 
 (defcustom dotemacs-modules
   '(init-core
@@ -35,35 +35,21 @@
     init-org
     init-erc
     init-eyecandy
-
     init-smartparens
-    ;; init-autopair
-
     init-yasnippet
-    ;; init-auto-complete
     init-company
-
-    init-projectile
     init-helm
     init-ido
-
     init-vcs
     init-flycheck
-
-    init-vim
     init-stylus
     init-js
-    ;; init-go
     init-web
     init-lisp
-    init-markdown
-
     init-misc
     init-evil
     init-bindings
-    init-macros
-
-    init-overrides)
+    init-fp)
   "Set of modules enabled in dotemacs."
   :group 'dotemacs)
 

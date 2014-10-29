@@ -141,21 +141,6 @@
     (evil-define-key 'visual stylus-mode-map (kbd ", p") 'my-stylus-compile-and-show-region)
     (evil-define-key 'normal stylus-mode-map (kbd ", p") 'my-stylus-compile-and-show-buffer))
 
-  (after "projectile-autoloads"
-    (define-key evil-normal-state-map (kbd "SPC /")
-      (bind
-       (interactive)
-       (call-interactively (cond ((executable-find "pt")
-                                  'projectile-pt)
-                                 ((executable-find "ag")
-                                  'projectile-ag)
-                                 ((executable-find "ack")
-                                  'projectile-ack)
-                                 (t
-                                  'projectile-grep)))))
-    (define-key evil-normal-state-map (kbd "SPC e") 'projectile-recentf)
-    (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file))
-
   (after "multiple-cursors-autoloads"
     (after 'js2-mode
       (evil-define-key 'normal js2-mode-map (kbd "g r") 'js2r-rename-var))
@@ -264,11 +249,5 @@
 
 ;; replace with [r]eally [q]uit
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
-(global-set-key (kbd "C-x C-c") (bind (message "Thou shall not quit!")))
-(after 'evil
-  (defadvice evil-quit (around advice-for-evil-quit activate)
-    (message "Thou shall not quit!"))
-  (defadvice evil-quit-all (around advice-for-evil-quit-all activate)
-    (message "Thou shall not quit!")))
 
 (provide 'init-bindings)

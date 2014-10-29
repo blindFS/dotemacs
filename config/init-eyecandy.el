@@ -26,7 +26,6 @@
 (after 'autopair (diminish 'autopair-mode))
 (after 'undo-tree (diminish 'undo-tree-mode))
 (after 'auto-complete (diminish 'auto-complete-mode))
-(after 'projectile (diminish 'projectile-mode))
 (after 'yasnippet (diminish 'yas-minor-mode))
 (after 'guide-key (diminish 'guide-key-mode))
 (after 'eldoc (diminish 'eldoc-mode))
@@ -66,10 +65,6 @@
 (diminish 'color-identifiers-mode)
 
 
-;; (require-package 'fancy-narrow)
-;; (fancy-narrow-mode)
-
-
 (require-package 'highlight-symbol)
 (setq highlight-symbol-idle-delay 0.3)
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
@@ -83,7 +78,7 @@
 
 (require-package 'indent-guide)
 (require 'indent-guide)
-(setq indent-guide-recursive t)
+(setq indent-guide-recursive nil)
 (add-to-list 'indent-guide-inhibit-modes 'package-menu-mode)
 (indent-guide-global-mode)
 

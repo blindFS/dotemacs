@@ -29,17 +29,6 @@
   (require-package 'wgrep-ag))
 
 
-(when (executable-find "ack")
-  (require-package 'ack-and-a-half)
-  (require-package 'wgrep-ack))
-
-
-(require-package 'project-explorer)
-(after 'project-explorer
-  (setq pe/cache-directory (concat dotemacs-cache-directory "project-explorer"))
-  (setq pe/omit-regex (concat pe/omit-regex "\\|^node_modules$")))
-
-
 (require-package 'ace-jump-mode)
 
 
@@ -80,5 +69,6 @@
 (when (eq system-type 'darwin)
   (require-package 'vkill))
 
+(global-linum-mode 1)
 
 (provide 'init-misc)
