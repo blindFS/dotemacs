@@ -132,15 +132,6 @@
   (after "elisp-slime-nav-autoloads"
     (evil-define-key 'normal emacs-lisp-mode-map (kbd "g d") 'elisp-slime-nav-find-elisp-thing-at-point))
 
-  (after "coffee-mode-autoloads"
-    (evil-define-key 'visual coffee-mode-map (kbd ", p") 'coffee-compile-region)
-    (evil-define-key 'normal coffee-mode-map (kbd ", p") 'coffee-compile-buffer))
-
-  (after 'stylus-mode
-    (define-key stylus-mode-map [remap eval-last-sexp] 'my-stylus-compile-and-eval-buffer)
-    (evil-define-key 'visual stylus-mode-map (kbd ", p") 'my-stylus-compile-and-show-region)
-    (evil-define-key 'normal stylus-mode-map (kbd ", p") 'my-stylus-compile-and-show-buffer))
-
   (after "multiple-cursors-autoloads"
     (after 'js2-mode
       (evil-define-key 'normal js2-mode-map (kbd "g r") 'js2r-rename-var))
@@ -174,15 +165,6 @@
     (define-key magit-status-mode-map (kbd "C-p") 'magit-goto-previous-sibling-section)
     (define-key magit-status-mode-map (kbd "q") 'my-magit-quit-session)))
 
-
-(after "project-explorer-autoloads"
-  (global-set-key [f2] 'project-explorer-open)
-  (autoload 'pe/show-file "project-explorer")
-  (global-set-key [f3] 'pe/show-file)
-  (after 'project-explorer
-    (define-key project-explorer-mode-map (kbd "C-l") 'evil-window-right)))
-
-
 (after "multiple-cursors-autoloads"
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -195,11 +177,6 @@
   (define-key comint-mode-map [down] 'comint-next-input))
 
 
-(after 'auto-complete
-  (define-key ac-completing-map (kbd "C-n") 'ac-next)
-  (define-key ac-completing-map (kbd "C-p") 'ac-previous))
-
-
 (after 'company
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
@@ -207,11 +184,6 @@
 
 (after "expand-region-autoloads"
   (global-set-key (kbd "C-=") 'er/expand-region))
-
-
-(after 'web-mode
-  (after "angular-snippets-autoloads"
-    (define-key web-mode-map (kbd "C-c C-d") 'ng-snip-show-docs-at-point)))
 
 
 ;; mouse scrolling in terminal

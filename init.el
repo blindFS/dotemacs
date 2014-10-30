@@ -42,7 +42,6 @@
     init-ido
     init-vcs
     init-flycheck
-    init-stylus
     init-js
     init-web
     init-lisp
