@@ -45,6 +45,7 @@
     init-js
     init-web
     init-lisp
+    init-pretty
     init-misc
     init-evil
     init-bindings

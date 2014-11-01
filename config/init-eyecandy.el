@@ -42,24 +42,6 @@
 (setq sml/show-frame-identification t)
 (sml/setup)
 
-
-(if (fboundp 'global-prettify-symbols-mode)
-    (progn
-      (global-prettify-symbols-mode)
-      (add-hook 'js2-mode-hook
-                (lambda ()
-                  (push '("function" . 955) prettify-symbols-alist)
-                  (push '("return" . 8592) prettify-symbols-alist))))
-  (progn
-    (require-package 'pretty-symbols)
-    (require 'pretty-symbols)
-    (diminish 'pretty-symbols-mode)
-    (add-to-list 'pretty-symbol-categories 'js)
-    (add-to-list 'pretty-symbol-patterns '(955 js "\\<function\\>" (js2-mode)))
-    (add-to-list 'pretty-symbol-patterns '(8592 js "\\<return\\>" (js2-mode)))
-    (add-hook 'find-file-hook 'pretty-symbols-mode)))
-
-
 (require-package 'color-identifiers-mode)
 (global-color-identifiers-mode)
 (diminish 'color-identifiers-mode)

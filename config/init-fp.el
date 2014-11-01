@@ -16,4 +16,5 @@
   (add-to-list 'company-backends 'company-ghc))
 
 (lazy-major-mode "\\.rkt" racket-mode)
+(require-package 'scheme-complete)
 (provide 'init-fp)
