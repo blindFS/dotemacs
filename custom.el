@@ -19,3 +19,4 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "NovaMono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
 (set-fontset-font t 'unicode (font-spec :family "Source Han Sans" :size 16))
+(setq face-font-rescale-alist '(("Source Han Sans" . 1.15) ("Source Han Sans" . 1.15)))
