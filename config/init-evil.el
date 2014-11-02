@@ -30,9 +30,9 @@
 (global-evil-leader-mode t)
 
 
-; (setq evilnc-hotkey-comment-operator "gc")
-; (require-package 'evil-nerd-commenter)
-; (require 'evil-nerd-commenter)
+(setq evilnc-hotkey-comment-operator "gc")
+(require-package 'evil-nerd-commenter)
+(require 'evil-nerd-commenter)
 
 
 (require-package 'evil-surround)
