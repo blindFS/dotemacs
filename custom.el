@@ -18,3 +18,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "NovaMono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+(set-fontset-font t 'unicode (font-spec :family "Source Han Sans" :size 16))
