@@ -22,17 +22,25 @@
 (setq evil-replace-state-cursor '("red" bar))
 (setq evil-operator-state-cursor '("red" hollow))
 
-(with-eval-after-load 'doc-view
-  (turn-off-evil-mode)
-  (define-key doc-view-mode-map (kbd "j") 'doc-view-next-line-or-next-page)
-  (define-key doc-view-mode-map (kbd "k") 'doc-view-previous-line-or-previous-page))
-
 (require-package 'evil)
 (require 'evil)
 
-
+;; customized kbd
+(evil-define-key 'normal global-map (kbd "gh") 'beginning-of-line)
+(evil-define-key 'normal global-map (kbd "gl") 'end-of-line)
 (require-package 'evil-leader)
 (global-evil-leader-mode t)
+
+
+;; for doc-view-mode
+(defun my-evil-doc-view-hook ()
+  (turn-off-evil-mode)
+  (define-key doc-view-mode-map (kbd "j") 'doc-view-scroll-up-or-next-page)
+  (define-key doc-view-mode-map (kbd "k") 'doc-view-scroll-down-or-previous-page)
+  (define-key doc-view-mode-map (kbd "h") 'image-backward-hscroll)
+  (define-key doc-view-mode-map (kbd "l") 'image-forward-hscroll))
+
+(add-hook 'doc-view-mode-hook 'my-evil-doc-view-hook)
 
 
 (setq evilnc-hotkey-comment-operator "gc")
@@ -53,7 +61,6 @@
 (setq evil-jumper-auto-save-interval 3600)
 (require-package 'evil-jumper)
 (require 'evil-jumper)
-
 
 (require-package 'evil-matchit)
 (defun evilmi-customize-keybinding ()

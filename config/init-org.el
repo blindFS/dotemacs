@@ -40,6 +40,7 @@
      (kbd "M-K") 'org-shiftmetaup
      (kbd "M-L") 'org-shiftmetaright)
 
+   ;; options
    (setq org-directory "~/Dropbox/org")
    (unless (file-exists-p org-directory)
      (make-directory org-directory))
@@ -55,13 +56,18 @@
    (setq org-startup-with-latex-preview t)
    (setq org-startup-with-inline-images t)
    (setq org-src-fontify-natively t)
-
+   (setq org-file-apps '((auto-mode . emacs)
+                         ("\\.x?html?\\'" . default)
+                         ;; ("\\.pdf\\'" . "evince %s")
+                         ))
    ;; for latex export
    (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
                                  "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
    ;; minted code block
    (setq org-latex-listings 'minted)
+   (add-to-list 'org-latex-packages-alist '("" "minted" nil))
+   (add-to-list 'org-latex-packages-alist '("" "zhfontcfg" nil))
 
    (setq org-agenda-files `(,org-directory))
    (setq org-capture-templates
@@ -110,6 +116,5 @@
                                         (executable-find "ispell")
                                         (executable-find "hunspell"))
                                 (flyspell-mode))))))
-
 
 (provide 'init-org)
