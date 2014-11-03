@@ -22,6 +22,11 @@
 (setq evil-replace-state-cursor '("red" bar))
 (setq evil-operator-state-cursor '("red" hollow))
 
+(with-eval-after-load 'doc-view
+  (turn-off-evil-mode)
+  (define-key doc-view-mode-map (kbd "j") 'doc-view-next-line-or-next-page)
+  (define-key doc-view-mode-map (kbd "k") 'doc-view-previous-line-or-previous-page))
+
 (require-package 'evil)
 (require 'evil)
 
