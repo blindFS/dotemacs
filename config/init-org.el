@@ -1,7 +1,6 @@
 (add-hook
  'org-load-hook
  (lambda ()
-
    ;; evil key bindings
    (evil-define-key 'normal org-mode-map
      (kbd "RET") 'org-open-at-point
@@ -111,6 +110,7 @@
       'org-babel-load-languages
       '((plantuml . t))))
 
+   (add-hook 'org-mode-hook 'company-mode)
    (add-hook 'org-mode-hook (lambda ()
                               (when (or (executable-find "aspell")
                                         (executable-find "ispell")

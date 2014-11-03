@@ -31,7 +31,6 @@
     ad-do-it))
 
 ;; for file completion
-(autoload 'comint-dynamic-complete-filename "comint" nil t)
-(global-set-key "\C-f" 'comint-dynamic-complete-filename)
+(global-set-key "\C-f" 'company-files)
 
 (provide 'init-company)
