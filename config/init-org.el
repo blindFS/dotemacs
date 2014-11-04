@@ -1,3 +1,4 @@
+(require 'htmlize)
 (add-hook
  'org-load-hook
  (lambda ()
@@ -26,10 +27,7 @@
      "zO" 'show-all
      "zc" 'hide-subtree
      "zC" 'hide-all
-     (kbd "H") 'org-shiftleft
-     (kbd "J") 'org-shiftdown
-     (kbd "K") 'org-shiftup
-     (kbd "L") 'org-shiftright
+     (kbd "<tab>") 'org-table-align
      (kbd "M-h") 'org-metaleft
      (kbd "M-j") 'org-metadown
      (kbd "M-k") 'org-metaup
@@ -67,6 +65,29 @@
    (setq org-latex-listings 'minted)
    (add-to-list 'org-latex-packages-alist '("" "minted" nil))
    (add-to-list 'org-latex-packages-alist '("" "zhfontcfg" nil))
+
+   ;; export dir
+   (require 'ox-publish)
+   (setq org-publish-project-alist
+         '(("html"
+            :base-directory "~/Dropbox/org"
+            :base-extension "org"
+            :publishing-directory "~/Dropbox/Public/html"
+            :publishing-function org-html-publish-to-html)
+           ("pdf"
+            :base-directory "~/Dropbox/org/"
+            :base-extension "org"
+            :publishing-directory "~/Dropbox/org/pdf"
+            :publishing-function org-latex-publish-to-pdf)
+           ("all" :components ("html" "pdf"))))
+
+   ;; default css style
+   (defun my-org-css-hook (exporter)
+     (when (eq exporter 'html)
+       (setq org-html-head-include-default-style nil)
+       (setq org-html-head (concat "<link href=\"assets/css/navigator.css\" rel=\"stylesheet\" type=\"text/css\">\n"
+                                   "<link href=\"assets/css/style.css\" rel=\"stylesheet\" type=\"text/css\">\n"))))
+   (add-hook 'org-export-before-processing-hook 'my-org-css-hook)
 
    (setq org-agenda-files `(,org-directory))
    (setq org-capture-templates
