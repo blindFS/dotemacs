@@ -66,7 +66,9 @@
    (add-to-list 'org-latex-packages-alist '("" "minted" nil))
    (add-to-list 'org-latex-packages-alist '("" "zhfontcfg" nil))
 
-   ;; export dir
+   ;; export options
+   (setq org-export-with-sub-superscripts '{})
+   (setq org-export-with-section-numbers t)
    (require 'ox-publish)
    (setq org-publish-project-alist
          '(("html"
@@ -75,7 +77,7 @@
             :publishing-directory "~/Dropbox/Public/html"
             :publishing-function org-html-publish-to-html)
            ("pdf"
-            :base-directory "~/Dropbox/org/"
+            :base-directory "~/Dropbox/org"
             :base-extension "org"
             :publishing-directory "~/Dropbox/org/pdf"
             :publishing-function org-latex-publish-to-pdf)

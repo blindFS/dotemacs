@@ -17,6 +17,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "NovaMono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "NovaMono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal))))
+ '(org-code ((t (:foreground "medium spring green")))))
 (set-fontset-font t 'unicode (font-spec :family "Source Han Sans" :size 16))
 (setq face-font-rescale-alist '(("Source Han Sans" . 1.15) ("Source Han Sans" . 1.15)))
