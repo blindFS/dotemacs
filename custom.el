@@ -10,6 +10,15 @@
    (quote
     ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(display-time-mode t)
+ '(org-emphasis-alist
+   (quote
+    (("*" bold)
+     ("/" italic)
+     ("_" underline)
+     ("=" org-verbatim verbatim)
+     ("~" org-code verbatim)
+     ("+"
+      (:strike-through t)))))
  '(size-indication-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -18,6 +27,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "NovaMono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal))))
+ '(highlight ((t (:background "#454545" :foreground nil :bold t))))
  '(org-code ((t (:foreground "medium spring green")))))
 (set-fontset-font t 'unicode (font-spec :family "Source Han Sans" :size 16))
 (setq face-font-rescale-alist '(("Source Han Sans" . 1.15) ("Source Han Sans" . 1.15)))

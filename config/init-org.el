@@ -48,6 +48,9 @@
    (setq org-log-done t)
 
    (setq org-hide-emphasis-markers t)
+   (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\n")
+   (custom-set-variables `(org-emphasis-alist ',org-emphasis-alist))
+
    (setq org-startup-indented t)
    (setq org-indent-indentation-per-level 1)
 
