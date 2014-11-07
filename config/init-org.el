@@ -47,8 +47,9 @@
    (setq org-default-notes-file my-inbox-org-file)
    (setq org-log-done t)
 
+   (setq org-hide-emphasis-markers t)
    (setq org-startup-indented t)
-   (setq org-indent-indentation-per-level 3)
+   (setq org-indent-indentation-per-level 1)
 
    (setq org-startup-with-latex-preview t)
    (setq org-startup-with-inline-images t)
