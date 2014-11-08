@@ -96,11 +96,11 @@
                      ((evil-visual-state-p) '("#330022" . "#ffffff"))
                      ((evil-normal-state-p) default-color)
                      (t '("#435160" . "#ffffff")))))
-    (set-face-background 'mode-line (car color))
-    (set-face-foreground 'mode-line (cdr color))))
+    (set-face-background 'powerline-active1 (car color))
+    (set-face-foreground 'powerline-active1 (cdr color))))
 
-(lexical-let ((default-color (cons (face-background 'mode-line)
-                                   (face-foreground 'mode-line))))
+(lexical-let ((default-color (cons (face-background 'powerline-active1)
+                                   (face-foreground 'powerline-active1))))
   (add-hook 'post-command-hook (lambda () (my-evil-modeline-change default-color))))
 
 (defadvice evil-ex-search-next (after advice-for-evil-ex-search-next activate)
