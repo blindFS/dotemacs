@@ -92,15 +92,15 @@
 
 (defun my-evil-modeline-change (default-color)
   "changes the modeline color when the evil mode changes"
-  (let ((color (cond ((evil-insert-state-p) '("#002233" . "#ffffff"))
-                     ((evil-visual-state-p) '("#330022" . "#ffffff"))
+  (let ((color (cond ((evil-insert-state-p) '("#3498db" . "#000000"))
+                     ((evil-visual-state-p) '("#f39c12" . "#000000"))
                      ((evil-normal-state-p) default-color)
-                     (t '("#435160" . "#ffffff")))))
-    (set-face-background 'powerline-active1 (car color))
-    (set-face-foreground 'powerline-active1 (cdr color))))
+                     (t '("#bdc3c7" . "#000000")))))
+    (set-face-background 'mode-line-buffer-id (car color))
+    (set-face-foreground 'mode-line-buffer-id (cdr color))))
 
-(lexical-let ((default-color (cons (face-background 'powerline-active1)
-                                   (face-foreground 'powerline-active1))))
+(lexical-let ((default-color (cons (face-background 'mode-line-buffer-id)
+                                   (face-foreground 'mode-line-buffer-id))))
   (add-hook 'post-command-hook (lambda () (my-evil-modeline-change default-color))))
 
 (defadvice evil-ex-search-next (after advice-for-evil-ex-search-next activate)
