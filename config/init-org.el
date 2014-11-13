@@ -1,4 +1,3 @@
-(require 'htmlize)
 (add-hook
  'org-load-hook
  (lambda ()
@@ -46,6 +45,7 @@
 
    (setq org-default-notes-file my-inbox-org-file)
    (setq org-log-done t)
+   (setq org-completion-use-ido t)
 
    (setq org-hide-emphasis-markers t)
    (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\n")
@@ -88,6 +88,7 @@
            ("all" :components ("html" "pdf"))))
 
    ;; default css style
+   (require 'htmlize)
    (defun my-org-css-hook (exporter)
      (when (eq exporter 'html)
        (setq org-html-head-include-default-style nil)
@@ -95,7 +96,23 @@
                                    "<link href=\"assets/css/style.css\" rel=\"stylesheet\" type=\"text/css\">\n"))))
    (add-hook 'org-export-before-processing-hook 'my-org-css-hook)
 
-   (setq org-agenda-files `(,org-directory))
+   ;; graphviz plantuml gnuplot
+   (lazy-major-mode "\\.dot" graphviz-dot-mode)
+   (lazy-major-mode "\\.plt" gnuplot-mode)
+   (org-babel-do-load-languages
+    'org-babel-load-languages
+    '((dot . t)
+      (sh . t)
+      (gnuplot . t)
+      (plantuml . t)))
+   (add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
+   (add-to-list 'org-src-lang-modes (quote ("gnuplot" . gnuplot)))
+   (add-to-list 'org-src-lang-modes (quote ("plantuml" . fundamental)))
+   (setq org-plantuml-jar-path
+         (expand-file-name "~/bin/plantuml.jar"))
+
+   ;; agenda
+   (setq org-agenda-files `(,(concat org-directory "/agenda")))
    (setq org-capture-templates
          '(("t" "Todo" entry (file+headline my-inbox-org-file "INBOX")
             "* TODO %?\n%U\n%a\n")
@@ -121,7 +138,6 @@
 
    (setq org-refile-targets '((nil :maxlevel . 9)
                               (org-agenda-files :maxlevel . 9)))
-   (setq org-completion-use-ido t)
 
    (after 'org-mobile
      (setq org-mobile-directory (concat org-directory "/MobileOrg"))
@@ -131,11 +147,6 @@
 
    (after 'evil
      (add-hook 'org-capture-mode-hook 'evil-insert-state))
-
-   (when (boundp 'org-plantuml-jar-path)
-     (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((plantuml . t))))
 
    (add-hook 'org-mode-hook 'company-mode)
    (add-hook 'org-mode-hook (lambda ()
