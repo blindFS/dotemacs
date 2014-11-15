@@ -41,9 +41,6 @@
    (unless (file-exists-p org-directory)
      (make-directory org-directory))
 
-   (setq my-inbox-org-file (concat org-directory "/inbox.org"))
-
-   (setq org-default-notes-file my-inbox-org-file)
    (setq org-log-done t)
    (setq org-completion-use-ido t)
 
@@ -56,6 +53,8 @@
 
    (setq org-startup-with-latex-preview t)
    (setq org-startup-with-inline-images t)
+   (setq org-pretty-entities t)
+   (setq org-pretty-entities-include-sub-superscripts nil)
    (setq org-src-fontify-natively t)
    (setq org-file-apps '((auto-mode . emacs)
                          ("\\.x?html?\\'" . default)
@@ -76,12 +75,12 @@
    (require 'ox-publish)
    (setq org-publish-project-alist
          '(("html"
-            :base-directory "~/Dropbox/org"
+            :base-directory "~/Dropbox/org/notes"
             :base-extension "org"
             :publishing-directory "~/Dropbox/Public/html"
             :publishing-function org-html-publish-to-html)
            ("pdf"
-            :base-directory "~/Dropbox/org"
+            :base-directory "~/Dropbox/org/notes"
             :base-extension "org"
             :publishing-directory "~/Dropbox/org/pdf"
             :publishing-function org-latex-publish-to-pdf)
@@ -111,8 +110,10 @@
    (setq org-plantuml-jar-path
          (expand-file-name "~/bin/plantuml.jar"))
 
-   ;; agenda
-   (setq org-agenda-files `(,(concat org-directory "/agenda")))
+   ;; GTD stuff
+   (setq org-agenda-files (quote ("~/Dropbox/org/GTD/gtd.org")))
+   (setq my-inbox-org-file (concat org-directory "/GTD/inbox.org"))
+   (setq org-default-notes-file my-inbox-org-file)
    (setq org-capture-templates
          '(("t" "Todo" entry (file+headline my-inbox-org-file "INBOX")
             "* TODO %?\n%U\n%a\n")
@@ -120,7 +121,7 @@
             "* %? :NOTE:\n%U\n%a\n")
            ("m" "Meeting" entry (file my-inbox-org-file)
             "* MEETING %? :MEETING:\n%U")
-           ("j" "Journal" entry (file+datetree (concat org-directory "/journal.org"))
+           ("j" "Journal" entry (file+datetree (concat org-directory "/GTD/journal.org"))
             "* %?\n%U\n")))
 
    (setq org-use-fast-todo-selection t)
@@ -139,6 +140,7 @@
    (setq org-refile-targets '((nil :maxlevel . 9)
                               (org-agenda-files :maxlevel . 9)))
 
+   ;; org mobile
    (after 'org-mobile
      (setq org-mobile-directory (concat org-directory "/MobileOrg"))
      (unless (file-exists-p org-mobile-directory)
