@@ -68,7 +68,7 @@
 
 ;; fringe
 (when (display-graphic-p)
-  (fringe-mode 16))
+  (fringe-mode '(10 . 0)))
 
 
 ;; ediff

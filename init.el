@@ -47,6 +47,7 @@
     init-lisp
     init-pretty
     init-misc
+    init-func
     init-evil
     init-bindings
     init-fp)

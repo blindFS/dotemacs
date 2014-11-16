@@ -27,6 +27,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "NovaMono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal))))
+ '(button ((t (:background "#333333" :foreground "medium turquoise"))))
+ '(help-argument-name ((t (:inherit italic :foreground "medium spring green"))))
  '(highlight ((t (:background "#454545" :foreground nil :bold t :underline nil))))
  '(org-code ((t (:foreground "medium spring green"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#425d78"))))
