@@ -36,8 +36,14 @@
 (after 'magit (diminish 'magit-auto-revert-mode))
 
 
-(require-package 'powerline)
-(powerline-default-theme)
+(require-package 'smart-mode-line)
+(setq sml/show-client t)
+(setq sml/show-eol t)
+(setq sml/show-frame-identification t)
+(sml/setup)
+
+;; (require-package 'powerline)
+;; (powerline-default-theme)
 
 (require-package 'color-identifiers-mode)
 (global-color-identifiers-mode)

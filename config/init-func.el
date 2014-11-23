@@ -23,5 +23,4 @@
               (kill-buffer buf))))
         (buffer-list)))
 
-(add-hook 'buffer-quit-function 'kill-star-buffers)
 (provide 'init-func)

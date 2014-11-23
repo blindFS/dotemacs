@@ -96,11 +96,11 @@
                      ((evil-visual-state-p) '("#f39c12" . "#000000"))
                      ((evil-normal-state-p) default-color)
                      (t '("#bdc3c7" . "#000000")))))
-    (set-face-background 'mode-line-buffer-id (car color))
-    (set-face-foreground 'mode-line-buffer-id (cdr color))))
+    (set-face-background 'sml/filename (car color))
+    (set-face-foreground 'sml/filename (cdr color))))
 
-(lexical-let ((default-color (cons (face-background 'mode-line-buffer-id)
-                                   (face-foreground 'mode-line-buffer-id))))
+(lexical-let ((default-color (cons (face-background 'sml/filename)
+                                   (face-foreground 'sml/filename))))
   (add-hook 'post-command-hook (lambda () (my-evil-modeline-change default-color))))
 
 (defadvice evil-ex-search-next (after advice-for-evil-ex-search-next activate)

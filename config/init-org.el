@@ -108,7 +108,7 @@
    (add-to-list 'org-src-lang-modes (quote ("gnuplot" . gnuplot)))
    (add-to-list 'org-src-lang-modes (quote ("plantuml" . fundamental)))
    (setq org-plantuml-jar-path
-         (expand-file-name "~/bin/plantuml.jar"))
+         (expand-file-name "/opt/plantuml/plantuml.jar"))
 
    ;; GTD stuff
    (setq org-agenda-files (quote ("~/Dropbox/org/GTD/gtd.org")))
