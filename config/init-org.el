@@ -156,5 +156,25 @@
                                         (executable-find "ispell")
                                         (executable-find "hunspell"))
                                 (flyspell-mode))))))
-
+(defun dia-from-table (table)
+  (cl-flet ((struct-name (x) (save-match-data
+                          (and (string-match "\\(struct\\|class\\) \\([^ ]*\\)" x)
+                               (match-string 2 x)))))
+   (let ((all-structs (mapcar 'car table)))
+     (mapcar #'(lambda (x)
+                 (let ((lhead (car x))
+                       (ltail (cdr x)))
+                   (princ (concat lhead " [label=\"<head> "
+                                  lhead " |"
+                                  (mapconcat (lambda (y)
+                                               (concat " <" (replace-regexp-in-string
+                                                             "\\W" "_" y) "> " y))
+                                             (delq "" ltail) " | ") "\", shape=\"record\"];\n"))
+                   (mapcar (lambda (y)
+                             (let ((sname (struct-name y)))
+                               (and (member sname all-structs)
+                                    (princ (format "%s:%s -> %s:head\n"
+                                                   lhead (replace-regexp-in-string
+                                                          "\\W" "_" y) sname)))))
+                           ltail))) table))))
 (provide 'init-org)

@@ -39,6 +39,7 @@
  '(rainbow-delimiters-depth-6-face ((t (:foreground "#27ae60"))))
  '(rainbow-delimiters-depth-7-face ((t (:foreground "#7f8c8d"))))
  '(rainbow-delimiters-unmatched-face ((t (:foreground "#e74c3c"))))
+ '(region ((t (:background "#444444" :foreground nil))))
  '(sp-show-pair-match-face ((t (:background "coral"))))
  '(trailing-whitespace ((t (:background "DarkOrchid2"))))
  '(which-func ((t (:foreground "#2ecc71")))))

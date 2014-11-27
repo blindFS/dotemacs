@@ -42,8 +42,8 @@
 (setq sml/show-frame-identification t)
 (sml/setup)
 
-;; (require-package 'powerline)
-;; (powerline-default-theme)
+(require-package 'powerline)
+(powerline-default-theme)
 
 (require-package 'color-identifiers-mode)
 (global-color-identifiers-mode)
