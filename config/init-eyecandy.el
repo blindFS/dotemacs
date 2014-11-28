@@ -60,6 +60,8 @@
 (require-package 'highlight-quoted)
 (add-hook 'prog-mode-hook 'highlight-quoted-mode)
 
+(require-package 'auto-dim-other-buffers)
+(add-hook 'after-init-hook 'auto-dim-other-buffers-mode)
 
 (require-package 'indent-guide)
 (require 'indent-guide)
