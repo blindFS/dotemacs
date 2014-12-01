@@ -35,6 +35,8 @@
      (kbd "M-J") 'org-shiftmetadown
      (kbd "M-K") 'org-shiftmetaup
      (kbd "M-L") 'org-shiftmetaright)
+   (evil-define-key 'insert org-mode-map
+     (kbd "C-l") 'org-table-next-field)
 
    ;; options
    (setq org-directory "~/Dropbox/org")

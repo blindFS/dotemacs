@@ -13,14 +13,11 @@
   (add-hook 'multiple-cursors-mode-enabled-hook 'evil-emacs-state)
   (add-hook 'multiple-cursors-mode-disabled-hook 'evil-normal-state))
 
-
 (require-package 'wgrep)
-
 
 (when (executable-find "pt")
   (require-package 'pt)
   (require-package 'wgrep-pt))
-
 
 (when (executable-find "ag")
   (require-package 'ag)
@@ -28,24 +25,18 @@
   (add-hook 'ag-mode-hook (lambda () (toggle-truncate-lines t)))
   (require-package 'wgrep-ag))
 
-
 (require-package 'ace-jump-mode)
 
-
 (require-package 'expand-region)
-
 
 (require-package 'editorconfig)
 (require 'editorconfig)
 
-
 (require-package 'aggressive-indent)
 (add-hook 'emacs-lisp-mode 'aggressive-indent-mode)
 
-
 (require-package 'etags-select)
 (setq etags-select-go-if-unambiguous t)
-
 
 (require-package 'windsize)
 (require 'windsize)
@@ -53,21 +44,21 @@
 (setq windsize-rows 8)
 (windsize-default-keybindings)
 
-
 (require-package 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
 
 (require-package 'framemove)
 (require 'framemove)
 (setq framemove-hook-into-windmove t)
 
-
 (require-package 'discover-my-major)
-
 
 (when (eq system-type 'darwin)
   (require-package 'vkill))
+
+(require 'popwin)
+(popwin-mode 1)
+(setq display-buffer-function 'popwin:display-buffer)
 
 (global-linum-mode 1)
 
