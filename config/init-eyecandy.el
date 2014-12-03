@@ -43,7 +43,12 @@
 (sml/setup)
 
 (require-package 'powerline)
-(powerline-default-theme)
+
+(require-package 'moe-theme)
+(require 'moe-theme)
+(moe-dark)
+(moe-theme-set-color 'blue)
+(powerline-moe-theme)
 
 (require-package 'color-identifiers-mode)
 (global-color-identifiers-mode)
