@@ -43,7 +43,6 @@
 (sml/setup)
 
 (require-package 'powerline)
-
 (require-package 'moe-theme)
 (require 'moe-theme)
 (moe-dark)

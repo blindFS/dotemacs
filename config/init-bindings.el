@@ -86,8 +86,6 @@
 
   (after "helm-autoloads"
     (define-key evil-normal-state-map (kbd "g b") 'helm-mini)
-    (define-key evil-normal-state-map (kbd "SPC f") 'helm-find-files)
-    (define-key evil-normal-state-map (kbd "SPC o") 'helm-imenu)
     (define-key evil-normal-state-map (kbd "SPC t") 'helm-etags-select)
     (define-key evil-normal-state-map (kbd "SPC y") 'helm-show-kill-ring)
     (define-key evil-normal-state-map (kbd "SPC m") 'helm-bookmarks)
