@@ -43,6 +43,7 @@
     init-vcs
     init-flycheck
     init-js
+    init-python
     init-web
     init-lisp
     init-pretty

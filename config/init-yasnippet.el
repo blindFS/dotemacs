@@ -12,9 +12,8 @@
 
 (add-to-list 'yas-snippet-dirs (concat user-emacs-directory "snippets"))
 
-(add-hook 'yas-minor-mode-hook
-          (lambda ()
-            (evil-define-key 'insert global-map (kbd "C-k") 'yas/insert-snippet)))
+(after 'evil
+  (evil-define-key 'insert global-map (kbd "C-k") 'yas/insert-snippet))
 
 (yas-reload-all)
 

@@ -10,6 +10,7 @@
 (add-hook 'scheme-mode-hook 'minor-prettify-symbols-hook)
 (add-hook 'emacs-lisp-mode-hook 'minor-prettify-symbols-hook)
 (add-hook 'racket-mode-hook 'minor-prettify-symbols-hook)
+(add-hook 'python-mode-hook 'minor-prettify-symbols-hook)
 
 (setq haskell-font-lock-symbols t)
 
