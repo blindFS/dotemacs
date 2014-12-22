@@ -2,41 +2,42 @@
  'org-load-hook
  (lambda ()
    ;; evil key bindings
-   (evil-define-key 'normal org-mode-map
-     (kbd "RET") 'org-open-at-point
-     "o" (lambda ()
-           (interactive)
-           (end-of-line)
-           (if (not (org-in-item-p))
-               (insert "\n- ")
-             (org-insert-item))
-           (evil-append nil)
-           )
-     "O" (lambda ()
-           (interactive)
-           (end-of-line)
-           (org-insert-heading)
-           (evil-append nil)
-           )
-     "za" 'org-cycle
-     "zA" 'org-shifttab
-     "zm" 'hide-body
-     "zr" 'show-all
-     "zo" 'show-subtree
-     "zO" 'show-all
-     "zc" 'hide-subtree
-     "zC" 'hide-all
-     (kbd "<tab>") 'org-table-align
-     (kbd "M-h") 'org-metaleft
-     (kbd "M-j") 'org-metadown
-     (kbd "M-k") 'org-metaup
-     (kbd "M-l") 'org-metaright
-     (kbd "M-H") 'org-shiftmetaleft
-     (kbd "M-J") 'org-shiftmetadown
-     (kbd "M-K") 'org-shiftmetaup
-     (kbd "M-L") 'org-shiftmetaright)
-   (evil-define-key 'insert org-mode-map
-     (kbd "C-l") 'org-table-next-field)
+   (after 'evil
+     (evil-define-key 'normal org-mode-map
+       (kbd "RET") 'org-open-at-point
+       "o" (lambda ()
+             (interactive)
+             (end-of-line)
+             (if (not (org-in-item-p))
+                 (insert "\n- ")
+               (org-insert-item))
+             (evil-append nil)
+             )
+       "O" (lambda ()
+             (interactive)
+             (end-of-line)
+             (org-insert-heading)
+             (evil-append nil)
+             )
+       "za" 'org-cycle
+       "zA" 'org-shifttab
+       "zm" 'hide-body
+       "zr" 'show-all
+       "zo" 'show-subtree
+       "zO" 'show-all
+       "zc" 'hide-subtree
+       "zC" 'hide-all
+       (kbd "<tab>") 'org-table-align
+       (kbd "M-h") 'org-metaleft
+       (kbd "M-j") 'org-metadown
+       (kbd "M-k") 'org-metaup
+       (kbd "M-l") 'org-metaright
+       (kbd "M-H") 'org-shiftmetaleft
+       (kbd "M-J") 'org-shiftmetadown
+       (kbd "M-K") 'org-shiftmetaup
+       (kbd "M-L") 'org-shiftmetaright)
+     (evil-define-key 'insert org-mode-map
+       (kbd "C-l") 'org-table-next-field))
 
    ;; options
    (setq org-directory "~/Dropbox/org")
@@ -160,23 +161,23 @@
                                 (flyspell-mode))))))
 (defun dia-from-table (table)
   (cl-flet ((struct-name (x) (save-match-data
-                          (and (string-match "\\(struct\\|class\\) \\([^ ]*\\)" x)
-                               (match-string 2 x)))))
-   (let ((all-structs (mapcar 'car table)))
-     (mapcar #'(lambda (x)
-                 (let ((lhead (car x))
-                       (ltail (cdr x)))
-                   (princ (concat lhead " [label=\"<head> "
-                                  lhead " |"
-                                  (mapconcat (lambda (y)
-                                               (concat " <" (replace-regexp-in-string
-                                                             "\\W" "_" y) "> " y))
-                                             (delq "" ltail) " | ") "\", shape=\"record\"];\n"))
-                   (mapcar (lambda (y)
-                             (let ((sname (struct-name y)))
-                               (and (member sname all-structs)
-                                    (princ (format "%s:%s -> %s:head\n"
-                                                   lhead (replace-regexp-in-string
-                                                          "\\W" "_" y) sname)))))
-                           ltail))) table))))
+                               (and (string-match "\\(struct\\|class\\) \\([^ ]*\\)" x)
+                                    (match-string 2 x)))))
+    (let ((all-structs (mapcar 'car table)))
+      (mapcar #'(lambda (x)
+                  (let ((lhead (car x))
+                        (ltail (cdr x)))
+                    (princ (concat lhead " [label=\"<head> "
+                                   lhead " |"
+                                   (mapconcat (lambda (y)
+                                                (concat " <" (replace-regexp-in-string
+                                                              "\\W" "_" y) "> " y))
+                                              (delq "" ltail) " | ") "\", shape=\"record\"];\n"))
+                    (mapcar (lambda (y)
+                              (let ((sname (struct-name y)))
+                                (and (member sname all-structs)
+                                     (princ (format "%s:%s -> %s:head\n"
+                                                    lhead (replace-regexp-in-string
+                                                           "\\W" "_" y) sname)))))
+                            ltail))) table))))
 (provide 'init-org)

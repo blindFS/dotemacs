@@ -8,19 +8,6 @@
 (size-indication-mode t)
 
 
-(defun my-fold-overlay (ov)
-  (when (eq 'code (overlay-get ov 'hs))
-    (let ((col (save-excursion
-                 (move-end-of-line 0)
-                 (current-column)))
-          (count (count-lines (overlay-start ov) (overlay-end ov))))
-      (overlay-put ov 'display
-                   (format " %s [ %d lines ] ----"
-                           (make-string (- (window-width) col 32) (string-to-char "-"))
-                           count)))))
-(setq hs-set-up-overlay 'my-fold-overlay)
-
-
 (require-package 'diminish)
 (diminish 'visual-line-mode)
 (after 'autopair (diminish 'autopair-mode))
@@ -36,18 +23,24 @@
 (after 'magit (diminish 'magit-auto-revert-mode))
 
 
-(require-package 'smart-mode-line)
-(setq sml/show-client t)
-(setq sml/show-eol t)
-(setq sml/show-frame-identification t)
-(sml/setup)
-
 (require-package 'powerline)
+(setq-default powerline-default-separator 'wave)
 (require-package 'moe-theme)
 (require 'moe-theme)
+(setq moe-theme-resize-org-title '(2.2 1.8 1.6 1.4 1.2 1.0 1.0 1.0 1.0))
 (moe-dark)
 (moe-theme-set-color 'blue)
 (powerline-moe-theme)
+
+(after 'evil
+  (defun my-evil-modeline-hook ()
+    "changes the modeline color when the evil mode changes"
+    (cond ((evil-insert-state-p) (moe-theme-set-color 'green))
+          ((evil-visual-state-p) (moe-theme-set-color 'orange))
+          ((evil-normal-state-p) (moe-theme-set-color 'blue))
+          (t (moe-theme-set-color 'w/b))))
+  (add-hook 'post-command-hook 'my-evil-modeline-hook))
+
 
 (require-package 'color-identifiers-mode)
 (global-color-identifiers-mode)

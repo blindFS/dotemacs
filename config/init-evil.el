@@ -90,19 +90,6 @@
 (defun my-send-string-to-terminal (string)
   (unless (display-graphic-p) (send-string-to-terminal string)))
 
-(defun my-evil-modeline-change (default-color)
-  "changes the modeline color when the evil mode changes"
-  (let ((color (cond ((evil-insert-state-p) '("#3498db" . "#000000"))
-                     ((evil-visual-state-p) '("#f39c12" . "#000000"))
-                     ((evil-normal-state-p) default-color)
-                     (t '("#bdc3c7" . "#000000")))))
-    (set-face-background 'sml/filename (car color))
-    (set-face-foreground 'sml/filename (cdr color))))
-
-(lexical-let ((default-color (cons (face-background 'sml/filename)
-                                   (face-foreground 'sml/filename))))
-  (add-hook 'post-command-hook (lambda () (my-evil-modeline-change default-color))))
-
 (defadvice evil-ex-search-next (after advice-for-evil-ex-search-next activate)
   (recenter))
 
