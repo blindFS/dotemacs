@@ -10,17 +10,28 @@
 
 (require-package 'diminish)
 (diminish 'visual-line-mode)
-(after 'autopair (diminish 'autopair-mode))
+(after 'aggressive-indent (diminish 'aggressive-indent-mode " Ⓘ"))
+(after 'company (diminish 'company-mode " Ⓒ"))
+(after 'rainbow-mode (diminish 'rainbow-mode " Ⓡ"))
+(after 'auto-dim-other-buffers (diminish 'auto-dim-other-buffers-mode " Ⓓ"))
+(after 'highlight-symbol (diminish 'highlight-symbol-mode " Ⓗ"))
+(after 'indent-guide (diminish 'indent-guide-mode " →"))
+(after 'flycheck (diminish 'flycheck-mode " Ⓕ"))
+(after 'flyspell (diminish 'flyspell-mode " Ⓢ"))
+(after 'autopair (diminish 'autopair-mode " Ⓐ"))
+(after 'smartparens (diminish 'smartparens-mode " (Ⓢ)"))
+(after 'paredit (diminish 'paredit-mode " (Ⓟ)"))
+(after 'whitespace (diminish 'whitespace-mode " Ⓦ"))
 (after 'undo-tree (diminish 'undo-tree-mode))
 (after 'auto-complete (diminish 'auto-complete-mode))
-(after 'yasnippet (diminish 'yas-minor-mode))
-(after 'guide-key (diminish 'guide-key-mode))
-(after 'eldoc (diminish 'eldoc-mode))
-(after 'smartparens (diminish 'smartparens-mode))
-(after 'company (diminish 'company-mode))
+(after 'yasnippet (diminish 'yas-minor-mode " Ⓨ"))
+(after 'guide-key (diminish 'guide-key-mode " Ⓖ"))
+(after 'eldoc (diminish 'eldoc-mode " Ⓔ"))
 (after 'elisp-slime-nav (diminish 'elisp-slime-nav-mode))
 (after 'git-gutter+ (diminish 'git-gutter+-mode))
 (after 'magit (diminish 'magit-auto-revert-mode))
+(after 'color-identifiers-mode (diminish 'color-identifiers-mode))
+(after 'abbrev(diminish 'abbrev-mode))
 
 
 (require-package 'powerline)
@@ -44,7 +55,6 @@
 
 (require-package 'color-identifiers-mode)
 (global-color-identifiers-mode)
-(diminish 'color-identifiers-mode)
 
 
 (require-package 'highlight-symbol)

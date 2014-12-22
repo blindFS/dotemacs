@@ -158,7 +158,8 @@
                               (when (or (executable-find "aspell")
                                         (executable-find "ispell")
                                         (executable-find "hunspell"))
-                                (flyspell-mode))))))
+                                (flyspell-mode))
+                              (diminish 'org-indent-mode)))))
 (defun dia-from-table (table)
   (cl-flet ((struct-name (x) (save-match-data
                                (and (string-match "\\(struct\\|class\\) \\([^ ]*\\)" x)

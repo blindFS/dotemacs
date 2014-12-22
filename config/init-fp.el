@@ -3,8 +3,13 @@
 (lazy-major-mode "\\.hs$" haskell-mode)
 (require-package 'haskell-mode)
 (require-package 'flycheck-haskell)
+(add-hook 'haskell-mode-hook (lambda ()
+                               (diminish 'haskell-doc-mode)
+                               (diminish 'haskell-indent-mode)))
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+
+
 (add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
 
 (autoload 'ghc-init "ghc" nil t)
