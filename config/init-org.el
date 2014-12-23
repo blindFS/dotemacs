@@ -1,3 +1,5 @@
+(require-package 'org-bullets)
+(require 'org-bullets)
 (add-hook
  'org-load-hook
  (lambda ()
@@ -159,7 +161,8 @@
                                         (executable-find "ispell")
                                         (executable-find "hunspell"))
                                 (flyspell-mode))
-                              (diminish 'org-indent-mode)))))
+                              (diminish 'org-indent-mode)
+                              (org-bullets-mode 1)))))
 (defun dia-from-table (table)
   (cl-flet ((struct-name (x) (save-match-data
                                (and (string-match "\\(struct\\|class\\) \\([^ ]*\\)" x)

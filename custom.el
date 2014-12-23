@@ -28,6 +28,8 @@
  '(default ((t (:family "NovaMono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal))))
  '(auto-dim-other-buffers-face ((t (:background "gray8"))))
  '(org-list-dt ((t (:foreground "turquoise" :weight bold))))
+ '(powerline-active1 ((t (:inherit mode-line :background "grey22" :foreground "medium spring green"))))
+ '(powerline-active2 ((t (:inherit mode-line :background "grey40" :foreground "light gray"))))
  '(rainbow-delimiters-depth-1-face ((t (:foreground "#425d78"))))
  '(rainbow-delimiters-depth-2-face ((t (:foreground "#1abc9c"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "#2980b9"))))
