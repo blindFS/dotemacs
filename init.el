@@ -16,21 +16,11 @@
 
 (add-to-list 'load-path (concat user-emacs-directory "config"))
 
-(require 'cl)
-(require 'init-packages)
-(require 'init-util)
-
-; (let ((base (concat user-emacs-directory "elisp")))
-;   (add-to-list 'load-path base)
-;   (dolist (dir (directory-files base t))
-;     (when (and (file-directory-p dir)
-;                (not (equal (file-name-nondirectory dir) ".."))
-;                (not (equal (file-name-nondirectory dir) ".")))
-;       (add-to-list 'load-path dir))))
-
 (defcustom dotemacs-modules
   '(init-core
-
+    init-packages
+    init-util
+    init-evil
     init-eshell
     init-org
     init-erc
@@ -42,14 +32,12 @@
     init-ido
     init-vcs
     init-flycheck
-    init-js
     init-python
     init-web
     init-lisp
     init-pretty
     init-misc
     init-func
-    init-evil
     init-bindings
     init-fp)
   "Set of modules enabled in dotemacs."

@@ -5,36 +5,24 @@
      ,@commands))
 
 
-(require-package 'guide-key)
-(require 'guide-key)
-(setq guide-key/recursive-key-sequence-flag t)
-(setq guide-key/guide-key-sequence '("C-x"))
-(guide-key-mode 1)
-
-
-(require-package 'guide-key-tip)
-(require 'guide-key-tip)
-(setq guide-key-tip/enabled t)
-
-
-(after "smex-autoloads"
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "C-x C-m") 'smex)
-  (global-set-key (kbd "C-c C-m") 'smex))
-
+(use-package guide-key-tip
+  :ensure t
+  :diminish (guide-key-mode . " Ⓖ")
+  :init
+  (progn
+    (setq guide-key/guide-key-sequence `("C-x" "C-c")
+          guide-key/recursive-key-sequence-flag t
+          guide-key/popup-window-position 'right
+          guide-key/text-scale-amount 0
+          guide-key-tip/enabled nil)
+    (guide-key-mode 1)))
 
 (setq my-eshell-buffer-count 0)
-
 
 (after 'evil
   ;; fix conflict with electric-indent-mode in 24.4
   (define-key evil-insert-state-map [remap newline] 'newline)
   (define-key evil-insert-state-map [remap newline-and-indent] 'newline-and-indent)
-
-  (require-package 'key-chord)
-  (key-chord-mode 1)
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
   (after "evil-leader-autoloads"
     (evil-leader/set-leader ",")
@@ -75,24 +63,10 @@
     (define-key evil-normal-state-map (kbd ", g r") 'git-gutter+-revert-hunks)
     (evil-ex-define-cmd "Gw" (bind (git-gutter+-stage-whole-buffer))))
 
-  (after "smex-autoloads"
-    (define-key evil-visual-state-map (kbd "SPC SPC") 'smex)
-    (define-key evil-normal-state-map (kbd "SPC SPC") 'smex))
-
   (define-key evil-normal-state-map (kbd "SPC o") 'imenu)
   (define-key evil-normal-state-map (kbd "SPC b") 'switch-to-buffer)
   (define-key evil-normal-state-map (kbd "SPC k") 'ido-kill-buffer)
   (define-key evil-normal-state-map (kbd "SPC f") 'ido-find-file)
-
-  (after "helm-autoloads"
-    (define-key evil-normal-state-map (kbd "g b") 'helm-mini)
-    (define-key evil-normal-state-map (kbd "SPC t") 'helm-etags-select)
-    (define-key evil-normal-state-map (kbd "SPC y") 'helm-show-kill-ring)
-    (define-key evil-normal-state-map (kbd "SPC m") 'helm-bookmarks)
-    (define-key evil-normal-state-map (kbd "SPC r") 'helm-register)
-    (after "helm-swoop-autoloads"
-      (define-key evil-normal-state-map (kbd "SPC l") 'helm-swoop)
-      (define-key evil-normal-state-map (kbd "SPC L") 'helm-multi-swoop)))
 
   (define-key evil-normal-state-map (kbd "C-b") 'evil-scroll-up)
   (define-key evil-normal-state-map (kbd "C-f") 'evil-scroll-down)
@@ -135,10 +109,6 @@
       (evil-define-key 'normal js2-mode-map (kbd "g r") 'js2r-rename-var))
     (define-key evil-normal-state-map (kbd "g r") 'mc/mark-all-like-this-dwim))
 
-  (after "ace-jump-mode-autoloads"
-    (define-key evil-operator-state-map (kbd "z") 'evil-ace-jump-char-mode)
-    (define-key evil-normal-state-map (kbd "s") 'evil-ace-jump-char-mode)
-    (define-key evil-motion-state-map (kbd "S-SPC") 'evil-ace-jump-line-mode))
 
   ;; butter fingers
   (evil-ex-define-cmd "Q" 'evil-quit)
@@ -175,15 +145,6 @@
   (define-key comint-mode-map [down] 'comint-next-input))
 
 
-(after 'company
-  (define-key company-active-map (kbd "C-n") 'company-select-next)
-  (define-key company-active-map (kbd "C-p") 'company-select-previous))
-
-
-(after "expand-region-autoloads"
-  (global-set-key (kbd "C-=") 'er/expand-region))
-
-
 ;; mouse scrolling in terminal
 (unless (display-graphic-p)
   (global-set-key [mouse-4] (bind (scroll-down 1)))
@@ -203,10 +164,6 @@
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
 
 (global-set-key (kbd "C-x p") 'proced)
-(after "vkill-autoloads"
-  (autoload 'vkill "vkill" nil t)
-  (global-set-key (kbd "C-x p") 'vkill))
-
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
@@ -217,7 +174,6 @@
 (global-unset-key (kbd "C-x m"))
 
 
-;; replace with [r]eally [q]uit
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 
 (provide 'init-bindings)

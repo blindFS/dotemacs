@@ -1,5 +1,9 @@
-(require-package 'org-bullets)
-(require 'org-bullets)
+(use-package org-bullets
+  :ensure t
+  :commands org-bullets-mode)
+
+(use-package htmlize :ensure t)
+
 (add-hook
  'org-load-hook
  (lambda ()
@@ -92,7 +96,6 @@
            ("all" :components ("html" "pdf"))))
 
    ;; default css style
-   (require 'htmlize)
    (defun my-org-css-hook (exporter)
      (when (eq exporter 'html)
        (setq org-html-head-include-default-style nil)
@@ -101,8 +104,13 @@
    (add-hook 'org-export-before-processing-hook 'my-org-css-hook)
 
    ;; graphviz plantuml gnuplot
-   (lazy-major-mode "\\.dot" graphviz-dot-mode)
-   (lazy-major-mode "\\.plt" gnuplot-mode)
+   (use-package graphviz-dot-mode
+     :ensure t
+     :mode "\\.dot$")
+
+   (use-package gnuplot-mode
+     :ensure t
+     :mode "\\.plt$")
    (org-babel-do-load-languages
     'org-babel-load-languages
     '((dot . t)
@@ -155,7 +163,6 @@
    (after 'evil
      (add-hook 'org-capture-mode-hook 'evil-insert-state))
 
-   (add-hook 'org-mode-hook 'company-mode)
    (add-hook 'org-mode-hook (lambda ()
                               (when (or (executable-find "aspell")
                                         (executable-find "ispell")

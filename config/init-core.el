@@ -116,8 +116,6 @@
 
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-(xterm-mouse-mode t)
-
 
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)

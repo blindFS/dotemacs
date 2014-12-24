@@ -1,22 +1,25 @@
-(after "js2-mode-autoloads"
-  (require-package 'skewer-mode)
-  (skewer-setup))
+(use-package rainbow-mode
+  :ensure t
+  :commands rainbow-mode
+  :diminish (rainbow-mode . " Ⓡ")
+  :init
+  (progn
+    (add-hook 'html-mode-hook 'rainbow-mode)
+    (add-hook 'web-mode-hook 'rainbow-mode)
+    (add-hook 'css-mode-hook 'rainbow-mode)))
 
+(use-package emmet-mode
+  :ensure t
+  :commands emmet-mode
+  :diminish (emmet-mode . "")
+  :init
+  (progn
+    (add-hook 'css-mode-hook 'emmet-mode)
+    (add-hook 'sgml-mode-hook 'emmet-mode)
+    (add-hook 'web-mode-hook 'emmet-mode)))
 
-(require-package 'rainbow-mode)
-(add-hook 'html-mode-hook 'rainbow-mode)
-(add-hook 'web-mode-hook 'rainbow-mode)
-(add-hook 'css-mode-hook 'rainbow-mode)
-
-(defun my-emmet-mode ()
-  (require-package 'emmet-mode)
-  (emmet-mode))
-
-(add-hook 'css-mode-hook 'my-emmet-mode)
-(add-hook 'sgml-mode-hook 'my-emmet-mode)
-(add-hook 'web-mode-hook 'my-emmet-mode)
-
-
-(lazy-major-mode "\\.html?$" web-mode)
+(use-package web-mode
+  :ensure t
+  :mode "\\.html?$")
 
 (provide 'init-web)

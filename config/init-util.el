@@ -10,14 +10,6 @@
        '(progn ,@body))))
 
 
-(defmacro lazy-major-mode (pattern mode)
-  "Defines a new major-mode matched by PATTERN, installs MODE if necessary, and activates it."
-  `(add-to-list 'auto-mode-alist
-                '(,pattern . (lambda ()
-                             (require-package (quote ,mode))
-                             (,mode)))))
-
-
 (defun my-recompile-init ()
   "Byte-compile all your dotfiles again."
   (interactive)
@@ -137,8 +129,9 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (if (eq system-type 'windows-nt)
     (dolist (path (split-string (getenv "PATH") ";"))
       (add-to-list 'exec-path (replace-regexp-in-string "\\\\" "/" path)))
-  (progn
-    (require-package 'exec-path-from-shell)
+  (use-package exec-path-from-shell
+    :ensure t
+    :init
     (exec-path-from-shell-initialize)))
 
 

@@ -1,25 +1,28 @@
-(lazy-major-mode "\\.sml" sml-mode)
+(use-package sml-mode
+  :ensure t
+  :mode "\\.sml$")
 
-(lazy-major-mode "\\.hs$" haskell-mode)
-(require-package 'haskell-mode)
-(require-package 'flycheck-haskell)
-(add-hook 'haskell-mode-hook (lambda ()
-                               (diminish 'haskell-doc-mode)
-                               (diminish 'haskell-indent-mode)))
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(use-package haskell-mode
+  :ensure t
+  :mode "\\.hs$"
+  :init
+  (progn
+    (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+    (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode))
+  :config
+  (progn
+    (setq haskell-font-lock-symbols t)
+    (use-package flycheck-haskell :ensure t)
+    (use-package company-ghc :ensure t)
+    (autoload 'ghc-init "ghc" nil t)
+    (autoload 'ghc-debug "ghc" nil t)
+    (ghc-init)))
 
 
-(add-hook 'haskell-mode-hook 'haskell-font-lock-symbols t)
+(use-package racket-mode
+  :ensure t
+  :mode "\\.rkt$")
 
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+(use-package scheme-complete :ensure t)
 
-(require-package 'company-ghc)
-(when (executable-find "ghc-mod")
-  (add-to-list 'company-backends 'company-ghc))
-
-(lazy-major-mode "\\.rkt" racket-mode)
-(require-package 'scheme-complete)
 (provide 'init-fp)

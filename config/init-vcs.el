@@ -1,10 +1,14 @@
 (after 'vc-git
-  (require-package 'magit)
-
-  (after 'magit
+  (use-package magit
+    :ensure t
+    :commands (magit-status
+               magit-log
+               magit-commit)
+    :diminish (magit-auto-revert-mode . "")
+    :config
+    (progn
     (setq magit-diff-options '("--histogram"))
     (setq magit-stage-all-confirm nil)
-
     (defadvice magit-status (around my-magit-fullscreen activate)
       (window-configuration-to-register :magit-fullscreen)
       ad-do-it
@@ -13,7 +17,7 @@
     (defun my-magit-quit-session ()
       (interactive)
       (kill-buffer)
-      (jump-to-register :magit-fullscreen)))
+      (jump-to-register :magit-fullscreen))))
 
   (after 'evil
     (after 'git-commit-mode
@@ -25,19 +29,18 @@
       (defadvice magit-blame-file-off (after advice-for-magit-blame-file-off activate)
         (evil-exit-emacs-state))))
 
-  (if (display-graphic-p)
-      (progn
-        (require-package 'git-gutter-fringe+)
-        (require 'git-gutter-fringe+))
-    (require-package 'git-gutter+))
+  (use-package git-gutter-fringe+
+    :ensure t
+    :diminish (git-gutter+-mode . "")
+    :init
+    (global-git-gutter+-mode)))
 
-  (global-git-gutter+-mode))
-
-
-(require-package 'diff-hl)
-(add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-(unless (display-graphic-p)
-  (diff-hl-margin-mode))
-
+(use-package diff-hl
+  :ensure t
+  :init
+  (progn
+    (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+    (unless (display-graphic-p)
+      (diff-hl-margin-mode))))
 
 (provide 'init-vcs)

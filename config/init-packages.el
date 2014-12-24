@@ -13,4 +13,7 @@
       (package-refresh-contents))
     (package-install package)))
 
+(require-package 'use-package)
+(require 'use-package)
+
 (provide 'init-packages)
