@@ -56,10 +56,8 @@
   :init
   (global-evil-leader-mode t))
 
-(use-package evil-nerd-commenter
-  :ensure t
-  :config
-  (setq evilnc-hotkey-comment-operator "gc"))
+(setq evilnc-hotkey-comment-operator "gc")
+(use-package evil-nerd-commenter :ensure t)
 
 (use-package evil-surround
   :ensure t
@@ -90,5 +88,12 @@
   (global-evil-visualstar-mode t))
 (use-package evil-indent-textobject :ensure t)
 (use-package evil-numbers :ensure t)
+(use-package evil-args
+  :ensure t
+  :defer t
+  :init
+  (progn
+    (define-key evil-inner-text-objects-map "," 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "," 'evil-outer-arg)))
 
 (provide 'init-evil)

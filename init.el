@@ -39,7 +39,7 @@
     init-misc
     init-func
     init-bindings
-    init-fp)
+    init-fp )
   "Set of modules enabled in dotemacs."
   :group 'dotemacs)
 

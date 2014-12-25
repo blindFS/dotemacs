@@ -24,7 +24,7 @@
   :ensure t
   :init
   (progn
-    (setq-default powerline-default-separator 'wave)
+    (setq-default powerline-default-separator 'slant)
 
     (defun powerline-my-theme ()
       (interactive)

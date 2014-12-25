@@ -49,7 +49,6 @@
   :init
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
-
 (use-package popwin
   :ensure t
   :init

@@ -10,7 +10,7 @@
   :diminish (guide-key-mode . " Ⓖ")
   :init
   (progn
-    (setq guide-key/guide-key-sequence `("C-x" "C-c")
+    (setq guide-key/guide-key-sequence `("C-x" "C-c" "SPC")
           guide-key/recursive-key-sequence-flag t
           guide-key/popup-window-position 'right
           guide-key/text-scale-amount 0
@@ -24,7 +24,7 @@
   (define-key evil-insert-state-map [remap newline] 'newline)
   (define-key evil-insert-state-map [remap newline-and-indent] 'newline-and-indent)
 
-  (after "evil-leader-autoloads"
+  (after 'evil-leader
     (evil-leader/set-leader ",")
     (evil-leader/set-key
       "w" 'save-buffer
@@ -172,8 +172,6 @@
 
 ;; have no use for these default bindings
 (global-unset-key (kbd "C-x m"))
-
-
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 
 (provide 'init-bindings)
