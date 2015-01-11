@@ -25,9 +25,14 @@
 (setq recentf-save-file (concat dotemacs-cache-directory "recentf"))
 (setq recentf-max-saved-items 1000)
 (setq recentf-max-menu-items 500)
-(add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'")
+(setq recentf-exclude '(
+                         "COMMIT_EDITMSG"
+                         "ido.last"
+                         "/elpa/"
+                         "recentf"))
+(setq recentf-auto-cleanup 10)
 (recentf-mode +1)
-(run-with-timer 1800 1800 'recentf-save-list)
+(run-with-idle-timer 30 t 'recentf-save-list)
 
 
 ;; erc

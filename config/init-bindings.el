@@ -94,7 +94,6 @@
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
   (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
 
-  (define-key evil-normal-state-map (kbd "Q") 'my-window-killer)
   (define-key evil-normal-state-map (kbd "Y") (kbd "y$"))
 
   (define-key evil-visual-state-map (kbd ", e") 'eval-region)
@@ -157,8 +156,6 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c s") 'my-goto-scratch-buffer)
-(global-set-key (kbd "C-c e") 'my-eval-and-replace)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
