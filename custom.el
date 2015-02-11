@@ -41,6 +41,6 @@
  '(region ((t (:background "#d7ff5f" :foreground nil))))
  '(sp-show-pair-match-face ((t (:background "coral"))))
  '(trailing-whitespace ((t (:background "DarkOrchid2")))))
-(set-fontset-font t 'unicode (font-spec :family "Source Han Sans" :size 16))
+(set-fontset-font t 'unicode (font-spec :family "Source Han Sans"))
 (setq face-font-rescale-alist '(("Source Han Sans" . 1.15) ("Source Han Sans" . 1.15)))
 
