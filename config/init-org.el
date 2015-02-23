@@ -82,6 +82,8 @@
    (setq org-export-with-sub-superscripts '{})
    (setq org-export-with-section-numbers t)
    (require 'ox-publish)
+   (setq org-publish-timestamp-directory
+         (concat dotemacs-cache-directory "org-timestamps"))
    (setq org-publish-project-alist
          '(("html"
             :base-directory "~/Dropbox/org/notes"
