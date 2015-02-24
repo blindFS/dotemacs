@@ -165,6 +165,27 @@
    (after 'evil
      (add-hook 'org-capture-mode-hook 'evil-insert-state))
 
+   (defface org-decorator-face
+        '((((class color) (min-colors 88) (background dark))
+          :foreground "#bb79d6"))
+       "for org-mode decorators."
+       :group 'basic-faces)
+
+   (font-lock-add-keywords
+    'org-mode '(("^\s*\\([+-]\\|[0-9][.)]\\)\s"
+                 .
+                 'org-decorator-face)
+                ("^\s*\\(+\\)\s"
+                 1
+                 (compose-region (- (match-end 0) 2)
+                                 (- (match-end 0) 1)
+                                 "►"))
+                ("^\s*\\(-\\)\s"
+                 1
+                 (compose-region (- (match-end 0) 2)
+                                 (- (match-end 0) 1)
+                                 "◅"))))
+
    (add-hook 'org-mode-hook (lambda ()
                               (when (or (executable-find "aspell")
                                         (executable-find "ispell")
@@ -172,6 +193,7 @@
                                 (flyspell-mode))
                               (diminish 'org-indent-mode)
                               (org-bullets-mode 1)))))
+
 (defun dia-from-table (table)
   (cl-flet ((struct-name (x) (save-match-data
                                (and (string-match "\\(struct\\|class\\) \\([^ ]*\\)" x)
