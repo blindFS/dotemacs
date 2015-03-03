@@ -25,4 +25,12 @@
 
 (use-package scheme-complete :ensure t)
 
+(load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+(use-package company-coq
+  :ensure t
+  :init
+  (progn
+    (setq company-coq-autocomplete-symbols t)
+    (add-hook 'coq-mode-hook 'company-coq-initialize)))
+
 (provide 'init-fp)
