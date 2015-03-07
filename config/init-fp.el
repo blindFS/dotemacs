@@ -25,7 +25,8 @@
 
 (use-package scheme-complete :ensure t)
 
-(load-file "/usr/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")
+(setq proof-splash-enable nil)
+
 (use-package company-coq
   :ensure t
   :init
