@@ -6,7 +6,9 @@
     dired-mode
     comint-mode
     log-edit-mode
-    compilation-mode)
+    compilation-mode
+    coq-goals-mode
+    coq-response-mode)
   "List of modes that should start up in Evil state."
   :type '(repeat (symbol))
   :group 'dotemacs)

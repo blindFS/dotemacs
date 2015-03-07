@@ -18,6 +18,9 @@
              ("=>" ?⇒)
              ("False" ?⊥)
              ("True" ?⊤)
+             ("fun" ?λ)
+             ("/\\" ?∧)
+             ("\\/" ?∨)
              ("nil" ?∅)) prettify-symbols-alist)))
 
 (add-hook 'scheme-mode-hook 'minor-prettify-symbols-hook)
@@ -25,5 +28,7 @@
 (add-hook 'racket-mode-hook 'minor-prettify-symbols-hook)
 (add-hook 'python-mode-hook 'minor-prettify-symbols-hook)
 (add-hook 'coq-mode-hook 'coq-prettify-symbols-hook)
+(add-hook 'coq-goals-mode-hook 'coq-prettify-symbols-hook)
+(add-hook 'coq-response-mode-hook 'coq-prettify-symbols-hook)
 
 (provide 'init-pretty)
