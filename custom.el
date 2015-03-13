@@ -26,6 +26,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "NovaMono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal))))
+ ; '(default ((t (:family "Input" :foundry "unknown" :slant normal :weight normal :height 100 :width normal))))
  '(auto-dim-other-buffers-face ((t (:background "gray8"))))
  '(org-list-dt ((t (:foreground "turquoise" :weight bold))))
  '(powerline-active1 ((t (:inherit mode-line :background "grey22" :foreground "medium spring green"))))
