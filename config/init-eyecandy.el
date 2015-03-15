@@ -111,7 +111,7 @@
 
 (use-package moe-theme
   :ensure t
-  :init
+  :config
   (progn
     (setq moe-theme-resize-org-title '(2.2 1.8 1.6 1.4 1.2 1.0 1.0 1.0 1.0))
     (moe-dark)
@@ -160,12 +160,11 @@
 (use-package indent-guide
   :ensure t
   :diminish " →"
-  :init
+  :config
   (progn
     (add-to-list 'indent-guide-inhibit-modes 'package-menu-mode)
-    (indent-guide-global-mode t))
-  :config
-  (setq indent-guide-recursive nil))
+    (indent-guide-global-mode t)
+    (setq indent-guide-recursive nil)))
 
 (add-hook 'find-file-hook 'hl-line-mode)
 

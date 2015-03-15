@@ -18,18 +18,6 @@
   :ensure t
   :init
   (progn
-    ;; customized kbd
-    (evil-define-key 'normal global-map (kbd "gh") 'beginning-of-line)
-    (evil-define-key 'normal global-map (kbd "gl") 'end-of-line)
-    ;; for doc-view-mode
-    (defun my-evil-doc-view-hook ()
-      (turn-off-evil-mode)
-      (define-key doc-view-mode-map (kbd "j") 'doc-view-scroll-up-or-next-page)
-      (define-key doc-view-mode-map (kbd "k") 'doc-view-scroll-down-or-previous-page)
-      (define-key doc-view-mode-map (kbd "h") 'image-backward-hscroll)
-      (define-key doc-view-mode-map (kbd "l") 'image-forward-hscroll))
-    (add-hook 'doc-view-mode-hook 'my-evil-doc-view-hook)
-
     (defun my-enable-evil-mode ()
       (if (apply 'derived-mode-p dotemacs-evil-state-modes)
           (turn-on-evil-mode)
@@ -44,6 +32,18 @@
       (recenter)))
   :config
   (progn
+    ;; customized kbd
+    (evil-define-key 'normal global-map (kbd "gh") 'beginning-of-line)
+    (evil-define-key 'normal global-map (kbd "gl") 'end-of-line)
+    ;; for doc-view-mode
+    (defun my-evil-doc-view-hook ()
+      (turn-off-evil-mode)
+      (define-key doc-view-mode-map (kbd "j") 'doc-view-scroll-up-or-next-page)
+      (define-key doc-view-mode-map (kbd "k") 'doc-view-scroll-down-or-previous-page)
+      (define-key doc-view-mode-map (kbd "h") 'image-backward-hscroll)
+      (define-key doc-view-mode-map (kbd "l") 'image-forward-hscroll))
+    (add-hook 'doc-view-mode-hook 'my-evil-doc-view-hook)
+
     (setq evil-search-module 'evil-search)
     (setq evil-magic 'very-magic)
     (setq evil-emacs-state-cursor '("#e74c3c" box))

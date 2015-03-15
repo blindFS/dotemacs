@@ -37,7 +37,7 @@
 
 (use-package windsize
   :ensure t
-  :init
+  :config
   (progn
     (setq windsize-cols 16)
     (setq windsize-rows 8)
@@ -51,9 +51,9 @@
 
 (use-package popwin
   :ensure t
-  :init
-  (popwin-mode 1)
   :config
-  (setq display-buffer-function 'popwin:display-buffer))
+  (progn
+    (setq display-buffer-function 'popwin:display-buffer)
+    (popwin-mode 1)))
 
 (provide 'init-misc)
