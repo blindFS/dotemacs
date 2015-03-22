@@ -9,7 +9,7 @@
     (show-paren-mode -1))
   :config
   (progn
-    (setq sp-show-pair-delay 0)
+    (setq sp-show-pair-delay 1)
     (setq sp-show-pair-from-inside t)
     (setq sp-autoescape-string-quote nil)
     (setq sp-autoinsert-if-followed-by-same 1)

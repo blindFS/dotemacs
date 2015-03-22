@@ -1,7 +1,7 @@
-(global-linum-mode t)
 (column-number-mode t)
 (display-time-mode t)
 (size-indication-mode t)
+(add-hook 'prog-mode-hook 'linum-mode)
 
 
 (use-package diminish

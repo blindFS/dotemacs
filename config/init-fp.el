@@ -33,5 +33,11 @@
   (progn
     (setq company-coq-autocomplete-symbols nil)
     (add-hook 'coq-mode-hook 'company-coq-initialize)))
+(add-hook 'coq-mode-hook (lambda ()
+                           (progn
+                             (linum-mode)
+                             (rainbow-delimiters-mode)
+                             (show-smartparens-mode -1)
+                             (sp-local-pair 'coq-mode "'" nil :actions nil))))
 
 (provide 'init-fp)

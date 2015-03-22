@@ -12,7 +12,8 @@
 (defun coq-mode-unicode-hook ()
   (progn
     (setq unicode-tokens-use-shortcuts nil)
-    (proof-unicode-tokens-enable)))
+    (proof-unicode-tokens-enable)
+    (show-paren-mode -1)))
 
 (add-hook 'scheme-mode-hook 'minor-prettify-symbols-hook)
 (add-hook 'emacs-lisp-mode-hook 'minor-prettify-symbols-hook)
