@@ -31,6 +31,7 @@
   :ensure t
   :init
   (progn
+    (setq company-coq-prettify-symbols nil)
     (setq company-coq-autocomplete-symbols nil)
     (add-hook 'coq-mode-hook 'company-coq-initialize)))
 (add-hook 'coq-mode-hook (lambda ()

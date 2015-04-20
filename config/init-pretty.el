@@ -13,7 +13,16 @@
   (progn
     (setq unicode-tokens-use-shortcuts nil)
     (proof-unicode-tokens-enable)
-    (show-paren-mode -1)))
+    (show-paren-mode -1)
+    (setq-local prettify-symbols-alist
+                '((":=" . ?≜)
+                  ("Proof." . ?∵)
+                  ("Qed." . ?■)
+                  ("Defined." . ?□)
+                  ("False" . ?⊥)
+                  ("True" . ?⊤)
+                  ("nil" . ?ⵁ)
+                  ("Prop" . ?Ƥ)))))
 
 (add-hook 'scheme-mode-hook 'minor-prettify-symbols-hook)
 (add-hook 'emacs-lisp-mode-hook 'minor-prettify-symbols-hook)
