@@ -69,6 +69,21 @@
                          ("\\.x?html?\\'" . default)
                          ;; ("\\.pdf\\'" . "evince %s")
                          ))
+
+   (require 'ox-latex)
+   (unless (boundp 'org-latex-classes)
+     (setq org-latex-classes nil))
+   (setq org-latex-default-class "org-article")
+   (add-to-list 'org-latex-classes
+                '("org-article"
+                  "\\documentclass{article}
+                   \\usepackage{mathpazo}"
+                  ("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
    ;; for latex export
    (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
                                  "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
@@ -77,6 +92,7 @@
    (setq org-latex-listings 'minted)
    (add-to-list 'org-latex-packages-alist '("" "minted" nil))
    (add-to-list 'org-latex-packages-alist '("" "zhfontcfg" nil))
+   (add-to-list 'org-latex-packages-alist '("" "mathpazo" t))
 
    ;; export options
    (setq org-export-with-sub-superscripts '{})
