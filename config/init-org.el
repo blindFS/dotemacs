@@ -129,10 +129,15 @@
    (use-package gnuplot-mode
      :ensure t
      :mode "\\.plt$")
+
+   (use-package ess
+     :ensure t)
+
    (org-babel-do-load-languages
     'org-babel-load-languages
     '((dot . t)
       (sh . t)
+      (R . t)
       (gnuplot . t)
       (plantuml . t)))
    (add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
